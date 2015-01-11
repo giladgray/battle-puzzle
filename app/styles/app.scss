@@ -6,6 +6,9 @@ $piece-padding: 5px;
 $pieces: one two three four;
 $colors: red green blue orange;
 
+$anim-duration: 150ms;
+$anim-timing: ease;
+
 
 
 
@@ -43,6 +46,8 @@ body {
 
   margin-left: $piece-padding;
   margin-bottom: $piece-padding;
+
+  transition: all $anim-duration $anim-timing;
 
   &:first-child {
     margin-left: 0;
@@ -110,6 +115,8 @@ body {
     background-color: $color;
     @include size($piece-padding);
     border-#{$direction}-radius: 100%;
+
+    transition: all $anim-duration $anim-timing;
   }
 }
 
@@ -117,6 +124,8 @@ body {
   background-color: inherit;
   @include size($piece-padding);
   position: absolute;
+
+  transition: all $anim-duration $anim-timing;
 
   &.top    { bottom : 100%; }
   &.bottom { bottom : 0;    }

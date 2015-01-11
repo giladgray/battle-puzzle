@@ -1,0 +1,149 @@
+@import "bourbon";
+
+$piece-size: 40px;
+$piece-padding: 5px;
+
+$pieces: one two three four;
+$colors: red green blue orange;
+
+body {
+  margin: 100px auto;
+  text-align: center;
+}
+
+.game-board {
+  display: inline-block;
+  margin: auto;
+  padding: $piece-padding;
+  border: 2px solid black;
+}
+
+.game-row {
+  display: block;
+
+  &:last-child .game-cell { margin-bottom: 0; }
+}
+
+.game-cell {
+  position: relative;
+  display: inline-block;
+  float: left;
+  @include size($piece-size);
+
+  margin-left: $piece-padding;
+  margin-bottom: $piece-padding;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+@mixin extend($direction, $amount: $piece-padding) {
+  margin-#{$direction}: 0;
+  padding-#{$direction}: $amount;
+}
+
+@mixin corner($color: white) {
+  content: '';
+  display: block;
+  background-color: $color;
+  @include size($piece-padding);
+}
+
+@for $i from 1 through length($pieces) {
+  $piece: nth($pieces, $i);
+  $color: nth($colors, $i);
+  .#{$piece} {
+    background-color: $color;
+
+    /* &.corner-b-l:after {
+      @include corner(\$color)
+    } */
+  }
+
+  .#{$piece} + .#{$piece} {
+    @include extend(left);
+  }
+}
+
+.first {
+  border-top-left-radius: $piece-padding;
+  border-bottom-left-radius: $piece-padding;
+}
+
+.last {
+  border-top-right-radius: $piece-padding;
+  border-bottom-right-radius: $piece-padding;
+}
+
+.above {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  @include extend(bottom);
+}
+
+.below {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+@mixin corner-cutout($direction, $color: white) {
+  &:before {
+    content: '';
+    display: block;
+    background-color: $color;
+    @include size($piece-padding);
+    border-#{$direction}-radius: 100%;
+  }
+}
+
+.corner {
+  background-color: inherit;
+  @include size($piece-padding);
+  position: absolute;
+
+  &.top    { bottom : 100%; }
+  &.bottom { bottom : 0;    }
+  &.left   { left   : 0;    }
+  &.right  { left   : 100%; }
+
+  &.bottom.left {
+    background-color: white;
+    border-top-right-radius: 100%;
+  }
+
+  &.bottom.right {
+    @include corner-cutout(top-left);
+  }
+
+  &.top.left {
+    @include corner-cutout(bottom-right);
+  }
+
+  &.top.right {
+    @include corner-cutout(bottom-left);
+  }
+}
+
+.corner-b-l {
+  &:before {
+    @include corner();
+    @include position(absolute, 100% null null 0);
+    border-top-left-radius: 100%;
+    z-index: 1;
+  }
+
+  &:after {
+    @include corner(inherit);
+    @include position(absolute, 100% null null 0);
+  }
+}
+
+.corner-t-r {
+
+}
+
+.corner-t-l {
+
+}

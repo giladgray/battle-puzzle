@@ -6,11 +6,22 @@ $piece-padding: 5px;
 $pieces: one two three four;
 $colors: red green blue orange;
 
+
+
+
+
 body {
   margin: 100px auto;
   text-align: center;
 }
 
+
+
+
+
+/*
+ * GAME BOARD, ROW, CELL
+ */
 .game-board {
   display: inline-block;
   margin: auto;
@@ -38,32 +49,27 @@ body {
   }
 }
 
+
+
+
+
+/*
+ * PIECES: colors and borders
+ */
+
+/* extend a cell in the given $direction by $amount */
 @mixin extend($direction, $amount: $piece-padding) {
   margin-#{$direction}: 0;
   padding-#{$direction}: $amount;
 }
 
-@mixin corner($color: white) {
-  content: '';
-  display: block;
-  background-color: $color;
-  @include size($piece-padding);
-}
-
 @for $i from 1 through length($pieces) {
   $piece: nth($pieces, $i);
   $color: nth($colors, $i);
-  .#{$piece} {
-    background-color: $color;
 
-    /* &.corner-b-l:after {
-      @include corner(\$color)
-    } */
-  }
+  .#{$piece} { background-color: $color; }
 
-  .#{$piece} + .#{$piece} {
-    @include extend(left);
-  }
+  .#{$piece} + .#{$piece} { @include extend(left); }
 }
 
 .first {
@@ -88,6 +94,15 @@ body {
   border-top-right-radius: 0;
 }
 
+
+
+
+
+/*
+ * CORNERS and cutouts
+ */
+
+/* create a pseudoelement to cover a section of a corner */
 @mixin corner-cutout($direction, $color: white) {
   &:before {
     content: '';
@@ -108,42 +123,15 @@ body {
   &.left   { left   : 0;    }
   &.right  { left   : 100%; }
 
+  /* this corner covers margin, so no cutout */
   &.bottom.left {
     background-color: white;
     border-top-right-radius: 100%;
   }
 
-  &.bottom.right {
-    @include corner-cutout(top-left);
-  }
+  &.bottom.right { @include corner-cutout(top-left); }
 
-  &.top.left {
-    @include corner-cutout(bottom-right);
-  }
+  &.top.left     { @include corner-cutout(bottom-right); }
 
-  &.top.right {
-    @include corner-cutout(bottom-left);
-  }
-}
-
-.corner-b-l {
-  &:before {
-    @include corner();
-    @include position(absolute, 100% null null 0);
-    border-top-left-radius: 100%;
-    z-index: 1;
-  }
-
-  &:after {
-    @include corner(inherit);
-    @include position(absolute, 100% null null 0);
-  }
-}
-
-.corner-t-r {
-
-}
-
-.corner-t-l {
-
+  &.top.right    { @include corner-cutout(bottom-left); }
 }

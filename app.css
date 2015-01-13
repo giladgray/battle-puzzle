@@ -1,0 +1,182 @@
+/* line 16, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+body {
+  margin: 100px auto;
+  text-align: center; }
+
+/*
+ * GAME BOARD, ROW, CELL
+ */
+/* line 28, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.game-board {
+  display: inline-block;
+  margin: auto;
+  padding: 5px;
+  border: 2px solid black; }
+
+/* line 35, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.game-row {
+  display: block; }
+  /* line 15, /Users/ggray/code/puzzle-battle/node_modules/node-bourbon/assets/stylesheets/addons/clearfix */
+  .game-row:after {
+    content: "";
+    display: table;
+    clear: both; }
+  /* line 39, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .game-row:last-child .game-cell {
+    margin-bottom: 0; }
+
+/* line 42, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.game-cell {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  transition: all 150ms ease; }
+  /* line 53, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .game-cell:first-child {
+    margin-left: 0; }
+
+/*
+ * PIECES: colors and borders
+ */
+/* extend a cell in the given $direction by $amount */
+/* line 76, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.one {
+  background-color: red; }
+
+/* line 78, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.one + .one {
+  margin-left: 0;
+  padding-left: 5px; }
+
+/* line 76, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.two {
+  background-color: green; }
+
+/* line 78, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.two + .two {
+  margin-left: 0;
+  padding-left: 5px; }
+
+/* line 76, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.three {
+  background-color: blue; }
+
+/* line 78, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.three + .three {
+  margin-left: 0;
+  padding-left: 5px; }
+
+/* line 76, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.four {
+  background-color: orange; }
+
+/* line 78, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.four + .four {
+  margin-left: 0;
+  padding-left: 5px; }
+
+/* line 81, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.first {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+/* line 86, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.last {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
+/* line 91, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.above {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+  padding-bottom: 5px; }
+
+/* line 98, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.below {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+
+/*
+ * CORNERS and cutouts
+ */
+/* create a pseudoelement to cover a section of a corner */
+/* line 124, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.corner {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: inherit;
+  /* transition: all \$anim-duration \$anim-timing; */
+  -webkit-animation: grow 150ms ease;
+          animation: grow 150ms ease;
+  /* this corner covers margin, so no cutout */ }
+  /* line 132, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.top {
+    bottom: 100%; }
+  /* line 133, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.bottom {
+    bottom: 0; }
+  /* line 134, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.left {
+    left: 0; }
+  /* line 135, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.right {
+    left: 100%; }
+  /* line 138, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.bottom.left {
+    background-color: white;
+    border-top-right-radius: 100%; }
+  /* line 113, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.bottom.right:before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-top-left-radius: 100%;
+    transition: all 150ms ease; }
+  /* line 113, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.top.left:before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-bottom-right-radius: 100%;
+    transition: all 150ms ease; }
+  /* line 113, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  .corner.top.right:before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-bottom-left-radius: 100%;
+    transition: all 150ms ease; }
+
+@-webkit-keyframes grow {
+  /* line 151, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  from {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+
+  /* line 152, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
+
+@keyframes grow {
+  /* line 151, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  from {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+
+  /* line 152, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }

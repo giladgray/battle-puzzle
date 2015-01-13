@@ -1,0 +1,5 @@
+<div class="game-cell {{cell.piece}}"
+     ng-class="cell.$layout.classes"
+     ng-click="game.rotate(cell)">
+  <div class="corner {{direction}}" ng-repeat="direction in cell.$layout.corners"></div>
+</div>

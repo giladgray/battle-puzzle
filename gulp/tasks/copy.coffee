@@ -34,7 +34,7 @@ copy([
 gulp.task 'copy', ->
   gutil   = require 'gulp-util'
   changed = require 'gulp-changed'
-  count   = require '../util/count'
+  count   = require 'gulp-count'
 
   config  = require('../config').copy
 
@@ -43,7 +43,7 @@ gulp.task 'copy', ->
     gulp.src(src)
       .pipe changed(dest)
       .pipe gulp.dest(dest)
-      .pipe count('Copied <%= counter %> to ' + gutil.colors.cyan(dest))
+      .pipe count('Copied <%= counter %> to ' + gutil.colors.cyan(dest), logFiles: true)
 
   # throw an error due to unknown format
   error = (arg) -> throw new gutil.PluginError('copy', "unknown spec format for input '#{arg}'")

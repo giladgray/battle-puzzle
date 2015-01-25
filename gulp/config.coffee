@@ -84,7 +84,5 @@ module.exports =
     dest: dest
     watch: true
 
-  # livereload server options, used in watch task.
-  # disable by setting to false. provide an object to customize.
-  # @see https://github.com/napcs/node-livereload#api-options
-  livereload: true
+  deploy:
+    src: "#{dest}/**"

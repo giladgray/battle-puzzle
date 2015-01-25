@@ -3,7 +3,7 @@ gulp = require 'gulp'
 # Compile Handlebars templates and rename path to plugin uri
 gulp.task 'handlebars', ->
   changed    = require 'gulp-changed'
-  count      = require '../util/count'
+  count      = require 'gulp-count'
   handlebars = require 'gulp-handlebars'
   onError    = require '../util/onError'
   reload     = require 'gulp-livereload'

@@ -37,6 +37,7 @@ body {
 .game-row {
   display: block;
   position: relative;
+  @include clearfix();
 
   &:last-child .game-cell { margin-bottom: 0; }
 }
@@ -125,6 +126,7 @@ body {
   @include size($piece-padding);
   background-color: inherit;
 
+  /* transition: all \$anim-duration \$anim-timing; */
   animation: grow $anim-duration $anim-timing;
 
   &.top    { bottom : 100%; }
@@ -153,4 +155,22 @@ body {
 @include keyframes(fadein) {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+
+
+
+
+/*
+ * CONTROLS
+ */
+
+.control {
+  display: inline-block;
+}
+
+button { @include button() }
+
+input[type=number] {
+  width: 4em;
 }

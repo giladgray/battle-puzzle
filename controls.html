@@ -1,11 +1,11 @@
 <div class="game-controls">
   <div class="control">
-    Rows <input type="number">
+    Rows <input type="number" min="1" max="50" ng-model="ctrl.rows">
   </div>
   <div class="control">
-    Columns <input type="number">
+    Columns <input type="number" min="1" max="50" ng-model="ctrl.cols">
   </div>
   <div class="control">
-    <button>New Game</button>
+    <button type="button" ng-click="ctrl.newGame()">New Game</button>
   </div>
 </div>

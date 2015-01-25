@@ -9,23 +9,26 @@ body {
 /* line 28, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
 .game-board {
   display: inline-block;
+  position: relative;
   margin: auto;
   padding: 5px;
+  padding-left: 0;
   border: 2px solid black; }
 
-/* line 35, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+/* line 37, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
 .game-row {
-  display: block; }
+  display: block;
+  position: relative; }
   /* line 15, /Users/ggray/code/puzzle-battle/node_modules/node-bourbon/assets/stylesheets/addons/clearfix */
   .game-row:after {
     content: "";
     display: table;
     clear: both; }
-  /* line 39, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  /* line 42, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
   .game-row:last-child .game-cell {
     margin-bottom: 0; }
 
-/* line 42, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+/* line 45, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
 .game-cell {
   position: relative;
   display: inline-block;
@@ -34,10 +37,9 @@ body {
   height: 40px;
   margin-left: 5px;
   margin-bottom: 5px;
-  transition: all 150ms ease; }
-  /* line 53, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
-  .game-cell:first-child {
-    margin-left: 0; }
+  transition: all 150ms ease;
+  -webkit-animation: fadein 150ms ease 150ms backwards;
+          animation: fadein 150ms ease 150ms backwards; }
 
 /*
  * PIECES: colors and borders
@@ -180,3 +182,62 @@ body {
   to {
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1); } }
+
+@-webkit-keyframes fadein {
+  /* line 156, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  from {
+    opacity: 0; }
+
+  /* line 157, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  to {
+    opacity: 1; } }
+
+@keyframes fadein {
+  /* line 156, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  from {
+    opacity: 0; }
+
+  /* line 157, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+  to {
+    opacity: 1; } }
+
+/*
+ * CONTROLS
+ */
+/* line 168, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+.control {
+  display: inline-block; }
+
+/* line 172, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+button {
+  border: 1px solid #076fe4;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #8ebcf1;
+  color: white;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: bold;
+  background-color: #4294f0;
+  background-image: linear-gradient(#4294f0, #0776f3);
+  padding: 7px 18px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #0065d7;
+  background-clip: padding-box; }
+  /* line 131, /Users/ggray/code/puzzle-battle/node_modules/node-bourbon/assets/stylesheets/addons/button */
+  button:hover:not(:disabled) {
+    box-shadow: inset 0 1px 0 0 #60a2ec;
+    cursor: pointer;
+    background-color: #2f87ea;
+    background-image: linear-gradient(#2f87ea, #086fe3); }
+  /* line 148, /Users/ggray/code/puzzle-battle/node_modules/node-bourbon/assets/stylesheets/addons/button */
+  button:active:not(:disabled), button:focus:not(:disabled) {
+    border: 1px solid #076fe4;
+    box-shadow: inset 0 0 8px 4px #0868d3, inset 0 0 8px 4px #0868d3; }
+  /* line 51, /Users/ggray/code/puzzle-battle/node_modules/node-bourbon/assets/stylesheets/addons/button */
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed; }
+
+/* line 174, /Users/ggray/code/puzzle-battle/app/styles/app.scss */
+input[type=number] {
+  width: 4em; }

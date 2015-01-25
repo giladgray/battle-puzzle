@@ -1,9 +1,12 @@
-<div class="game-board">
-  <div class="game-row" ng-repeat="row in game.board.rows()">
-    <div class="game-cell {{cell.piece}}" ng-repeat="cell in row"
+<div class="game-board" style="width: {{game.board.cols * 45}}px; height: {{game.board.rows * 45 - 5}}px;">
+  <div class="game-row" ng-repeat="row in game.board.processRows()">
+    <div class="game-cell {{cell.value}}" ng-repeat="cell in row"
+         style="position:absolute; top: {{45 * cell.row}}px; left: {{45 * cell.col}}px"
          ng-class="cell.$layout.classes"
-         ng-click="game.rotate(cell)">
+         ng-click="game.remove(cell)">
       <div class="corner {{direction}}" ng-repeat="direction in cell.$layout.corners"></div>
     </div>
   </div>
 </div>
+<game-score score="game.score"></game-score>
+<game-controls></game-controls>

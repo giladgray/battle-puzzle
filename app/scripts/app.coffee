@@ -17,10 +17,10 @@ app.directive 'gameBoard', ->
 
     # fill board with random pieces
     @newGame = ->
-      @board.fill -> piece: randomPiece()
+      @board.fill randomPiece
     @newGame()
 
-    # rotate this cell to next piece
-    @rotate = (cell) ->
-      index = pieces.indexOf(cell.piece)
-      cell.piece = pieces[(index + 1) % pieces.length]
+    @remove = (cell) ->
+      block = @board.block(cell.row, cell.col)
+      @board.remove block...
+      @board.refill randomPiece
